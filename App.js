@@ -1,35 +1,47 @@
-import { Text, SafeAreaView, StyleSheet } from 'react-native';
+import { SafeAreaView, StyleSheet, Platform, StatusBar } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import WelcomeScreen from './screens/WelcomeScreen';
+import LoginScreen from './screens/LoginScreen';
+import RegisterScreen from './screens/RegisterScreen';
+import HomeScreen from './screens/HomeScreen';
+import BookingScreen from './screens/BookingScreen';
+import CreateBookingScreen from './screens/CreateBookingScreen';
+import ProfileScreen from './screens/ProfileScreen';
+import { colors } from './assets/color';
 
-// You can import supported modules from npm
-import { Card } from 'react-native-paper';
+const Stack = createStackNavigator();
 
-// or any files within the Snack
-import AssetExample from './components/AssetExample';
+function MyStack(){
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Welcome" component={WelcomeScreen} options={{ headerShown : false }} />
+      <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown : false }} />
+      <Stack.Screen name="Register" component={RegisterScreen} options={{ headerShown : false }} />
+      <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown : false }} />
+      <Stack.Screen name="My Bookings" component={BookingScreen} options={{ headerShown : false }} />
+      <Stack.Screen name="Create Booking" component={CreateBookingScreen} options={{ headerShown : false }} />
+      <Stack.Screen name="My Profile" component={ProfileScreen} options={{ headerShown : false }} />
+    </Stack.Navigator>
+  );
+}
 
 export default function App() {
   return (
-    <SafeAreaView style={styles.container}>
-      <Text style={styles.paragraph}>
-        Change code in the editor and watch it change on your phone! Save to get a shareable url.
-      </Text>
-      <Card>
-        <AssetExample />
-      </Card>
+    <SafeAreaView style={[styles.container]}>
+      <StatusBar backgroundColor={colors.primaryColor} barStyle="light-content" />
+      <NavigationContainer>
+        <MyStack/>
+      </NavigationContainer>
     </SafeAreaView>
   );
 }
 
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    backgroundColor: '#ecf0f1',
-    padding: 8,
-  },
-  paragraph: {
-    margin: 24,
-    fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    backgroundColor: colors.bgColor,
   },
 });

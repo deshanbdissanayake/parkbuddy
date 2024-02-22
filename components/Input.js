@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const CreateBookingScreen = () => {
+const Input = () => {
   return (
     <View>
-      <Text>CreateBookingScreen</Text>
+      <Text>Input</Text>
     </View>
   )
 }
 
-export default CreateBookingScreen
+export default Input
 
 const styles = StyleSheet.create({})
