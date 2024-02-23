@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, View, Text, KeyboardAvoidingView, Platform } from 'react-native'
+import { ScrollView, StyleSheet, View, Text, KeyboardAvoidingView, Platform, Image } from 'react-native'
 import React, { useState } from 'react'
 import Input from '../components/Input'
 import Button from '../components/Button'
@@ -21,6 +21,9 @@ const RegisterScreen = ({ navigation }) => {
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
       <ScrollView contentContainerStyle={styles.container}>
+        <View style={styles.imageWrapper}>
+          <Image source={require('../assets/parking.png')} style={styles.imageStyles} />
+        </View>
         <View style={styles.formWrapper}>
           <View style={styles.inputWrapper}>
             <Input 
@@ -44,14 +47,16 @@ const RegisterScreen = ({ navigation }) => {
               onChangeText={(text) => setPassword(text)}
               placeholder='Password'
               secureTextEntry={!showPw}
+              pwIcon={true}
+              pwIconFunc={() => setShowPw(!showPw)}
             />
           </View>
           <View style={styles.btnWrapper}>
-          <Button 
-            bgColor={colors.secondaryColor} 
-            content={<Text style={styles.buttonText}>Register</Text>} 
-            func={handleRegisterClick} 
-          />
+            <Button 
+              bgColor={colors.secondaryColor} 
+              content={<Text style={styles.buttonText}>Register</Text>} 
+              func={handleRegisterClick} 
+            />
           </View>
         </View>
       </ScrollView>
@@ -67,9 +72,19 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 20,
   },
+  imageWrapper: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  imageStyles: {
+    width: 160,
+    height: 160,
+    resizeMode: 'cover',
+  },
   formWrapper: {
-    justifyContent: 'flex-end',
-    flexGrow: 1,
+    flex: 1,
+    justifyContent: 'center',
   },
   inputWrapper: {
 

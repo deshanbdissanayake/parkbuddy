@@ -45,6 +45,8 @@ const WelcomeScreen = ({ navigation }) => {
                             placeholder='Enter Your Password'
                             secureTextEntry={!showPw}
                             alignment='center'
+                            pwIcon={true}
+                            pwIconFunc={() => setShowPw(!showPw)}
                         />
                     </View>
                     <Button bgColor={colors.primaryColor} content={<Text style={styles.buttonText}>Login</Text>} func={handleLoginClick} />

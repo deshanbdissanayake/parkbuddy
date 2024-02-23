@@ -1,8 +1,9 @@
-import { StyleSheet, TextInput, View } from "react-native";
+import { StyleSheet, TextInput, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { colors } from "../assets/color";
+import { Feather } from "@expo/vector-icons";
 
-const Input = ({keyboardType, value, onChangeText, placeholder, secureTextEntry, alignment = 'left'}) => {
+const Input = ({keyboardType, value, onChangeText, placeholder, secureTextEntry, alignment = 'left', pwIcon = false, pwIconFunc}) => {
 
   
     return (
@@ -15,6 +16,19 @@ const Input = ({keyboardType, value, onChangeText, placeholder, secureTextEntry,
             secureTextEntry={secureTextEntry}
             style={[styles.inputTextStyles, {textAlign: alignment}]}
         />
+        {pwIcon ? 
+            (
+                <TouchableOpacity onPress={pwIconFunc} style={styles.pwIconStyles}>
+                    {
+                        secureTextEntry ? (
+                            <Feather name="eye" size={24} color={colors.textLightColor} />
+                        ) : (
+                            <Feather name="eye-off" size={24} color={colors.textLightColor} />
+                        )
+                    }
+                </TouchableOpacity>
+            )
+         : null}
     </View>
   );
 };
@@ -35,4 +49,11 @@ const styles = StyleSheet.create({
         fontSize: 14,
         width: '100%',
     },
+    pwIconStyles: {
+        position: 'absolute',
+        right: 0,
+        top: 0,
+        padding: 10,
+        zIndex: 2,
+    }
 });
