@@ -1,8 +1,8 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import BookingCard from '../components/BookingCard';
-import { getMyBookings } from '../assets/data/getData';
 import { colors } from '../assets/data/color';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const BookingScreen = () => {
   const [bookings, setBookings] = useState([]);
@@ -10,8 +10,9 @@ const BookingScreen = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        let b = getMyBookings;
-        setBookings(b);
+        let b = await AsyncStorage.getItem('myBookings');
+        let myBookings = JSON.parse(b);
+        setBookings(myBookings);
       } catch (error) {
         console.error('Error getting bookings:', error);
         setBookings([]);
@@ -23,10 +24,10 @@ const BookingScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.bookingCardsWrapper}>
-        {bookings.length > 0 ? (
+        {bookings && bookings.length > 0 ? (
           <FlatList
             data={bookings}
-            keyExtractor={(item) => item.id.toString()}
+            keyExtractor={(item, index) => index.toString()}
             renderItem={({ item }) => <BookingCard data={item} />}
           />
         ) : (

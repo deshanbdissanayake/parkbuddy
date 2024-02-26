@@ -28,7 +28,6 @@ const ProfileScreen = ({ navigation }) => {
         let un = await AsyncStorage.getItem('username');
         let pw = await AsyncStorage.getItem('password');
 
-        console.log(un)
         setVehicleType(vt);
         setVehicleNo(vn);
         setPhoneNo(pn);
@@ -63,7 +62,8 @@ const ProfileScreen = ({ navigation }) => {
       await AsyncStorage.setItem('phoneNo', phoneNo);
       await AsyncStorage.setItem('username', username);
       await AsyncStorage.setItem('password', password);
-        
+
+      Alert.alert('Success', 'Data Updated Successfully!');
   
     } catch (error) {
       Alert.alert('Error', 'Error updating data');

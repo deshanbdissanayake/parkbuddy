@@ -16,11 +16,15 @@ const RegisterScreen = ({ navigation }) => {
   const [showPw, setShowPw] = useState(false);
   const [vehicleTypes, setVehicleTypes] = useState([]);
 
+  const [myBookings, setMyBookings]  = useState([]);
+
   useEffect(()=> {
     const getData = async () => {
       try {
         let types = getVehicleTypes;
+        let bookingList = getMyBookings;
         setVehicleTypes(types);
+        setMyBookings(bookingList);
       } catch (error) {
         console.error('Error getting vehicle types:', error);
         setVehicleTypes([]);
@@ -49,6 +53,8 @@ const RegisterScreen = ({ navigation }) => {
       await AsyncStorage.setItem('phoneNo', phoneNo);
       await AsyncStorage.setItem('username', username);
       await AsyncStorage.setItem('password', password);
+
+      await AsyncStorage.setItem('myBookings', JSON.stringify(myBookings))
         
       // Redirect or perform any other actions after successful registration
       navigation.navigate('Home');
