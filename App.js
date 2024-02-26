@@ -7,7 +7,7 @@ import HomeScreen from './screens/HomeScreen';
 import BookingScreen from './screens/BookingScreen';
 import CreateBookingScreen from './screens/CreateBookingScreen';
 import ProfileScreen from './screens/ProfileScreen';
-import { colors } from './assets/color';
+import { colors } from './assets/data/color';
 
 const Stack = createStackNavigator();
 
@@ -17,9 +17,9 @@ function MyStack(){
       <Stack.Screen name="Welcome" component={WelcomeScreen} options={{ headerShown : false }} />
       <Stack.Screen name="Register" component={RegisterScreen} />
       <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown : false }} />
-      <Stack.Screen name="My Bookings" component={BookingScreen} options={{ headerShown : false }} />
-      <Stack.Screen name="Create Booking" component={CreateBookingScreen} options={{ headerShown : false }} />
-      <Stack.Screen name="My Profile" component={ProfileScreen} options={{ headerShown : false }} />
+      <Stack.Screen name="My Bookings" component={BookingScreen} />
+      <Stack.Screen name="Create Booking" component={CreateBookingScreen} />
+      <Stack.Screen name="My Profile" component={ProfileScreen} />
     </Stack.Navigator>
   );
 }

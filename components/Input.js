@@ -1,6 +1,6 @@
 import { StyleSheet, TextInput, TouchableOpacity, View } from "react-native";
 import React from "react";
-import { colors } from "../assets/color";
+import { colors } from "../assets/data/color";
 import { Feather } from "@expo/vector-icons";
 
 const Input = ({keyboardType, value, onChangeText, placeholder, secureTextEntry, alignment = 'left', pwIcon = false, pwIconFunc}) => {

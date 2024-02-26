@@ -1,20 +1,54 @@
-import React, { useState } from 'react';
-import { KeyboardAvoidingView, StyleSheet, Text, View, Platform, Image, ScrollView } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { KeyboardAvoidingView, StyleSheet, Text, View, Platform, Image, ScrollView, Alert } from 'react-native';
 import Button from '../components/Button';
-import { colors } from '../assets/color';
+import { colors } from '../assets/data/color';
 import Input from '../components/Input';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const WelcomeScreen = ({ navigation }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [showPw, setShowPw] = useState(false);
+    const [storedUsername, setStoredUsername] = useState('');
+    const [storedPassword, setStoredPassword] = useState('');
+
+    useEffect(() => {
+        // Load stored username and password from AsyncStorage
+        getData();
+    }, []);
 
     const handleLoginClick = () => {
-        // Implement your login logic here
+        // Check if the entered credentials match the stored ones
+        if (!storedUsername) {
+        Alert.alert('Error', 'You are not yet registered!', [{
+            text: 'OK',
+            onPress: () => navigation.navigate('Register')
+        }]);
+        } else if (username !== storedUsername || password !== storedPassword) {
+            Alert.alert('Error', 'Check your credentials again!');
+        } else {
+            // Login successful
+            navigation.navigate('Home')
+        }
     };
 
     const handleRegisterClick = () => {
-        navigation.navigate('Register');
+        if (!storedUsername) {
+            navigation.navigate('Register');
+        }else{
+            Alert.alert('Error', 'You already have an account!')
+        }
+    };
+
+    const getData = async () => {
+        try {
+        const un = await AsyncStorage.getItem('username');
+        const pw = await AsyncStorage.getItem('password');
+        setStoredUsername(un);
+        setStoredPassword(pw);
+        } catch (error) {
+        console.error('Error', error);
+        }
     };
 
     return (
