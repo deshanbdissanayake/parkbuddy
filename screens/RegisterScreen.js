@@ -5,7 +5,7 @@ import Button from '../components/Button'
 import { colors } from '../assets/data/color'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Select from '../components/Select'
-import { getVehicleTypes } from '../assets/data/getData'
+import { getVehicleTypes, getMyBookings } from '../assets/data/getData'
 
 const RegisterScreen = ({ navigation }) => {
   const [vehicleType, setVehicleType] = useState('');

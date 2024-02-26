@@ -6,16 +6,16 @@ import Input from '../components/Input';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const WelcomeScreen = ({ navigation }) => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+    const [username, setUsername] = useState(null);
+    const [password, setPassword] = useState(null);
     const [showPw, setShowPw] = useState(false);
-    const [storedUsername, setStoredUsername] = useState('');
-    const [storedPassword, setStoredPassword] = useState('');
+    const [storedUsername, setStoredUsername] = useState(null);
+    const [storedPassword, setStoredPassword] = useState(null);
 
     useEffect(() => {
         // Load stored username and password from AsyncStorage
         getData();
-    }, []);
+    }, [storedUsername]);
 
     const handleLoginClick = () => {
         // Check if the entered credentials match the stored ones
@@ -28,7 +28,9 @@ const WelcomeScreen = ({ navigation }) => {
             Alert.alert('Error', 'Check your credentials again!');
         } else {
             // Login successful
-            navigation.navigate('Home')
+            navigation.navigate('Home');
+            setUsername(null)
+            setPassword(null)
         }
     };
 

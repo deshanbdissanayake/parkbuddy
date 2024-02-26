@@ -80,6 +80,10 @@ const CreateBookingScreen = ({ navigation }) => {
       if(res.stt == 'ok'){
         Alert.alert('Success', res.msg);
         navigation.navigate('My Bookings');
+        setSelectedSiteId(null);
+        setSelectedSiteName(null);
+        setSelectedDate(null);
+        setSelectedTime(null);
       }else{
         Alert.alert('Error', res.msg);
       }

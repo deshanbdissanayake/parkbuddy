@@ -105,6 +105,7 @@ const styles = StyleSheet.create({
   },
   logOutBtnStyles: {
     marginLeft: 20,
-    padding: 10,
+    paddingVertical: 10,
+    paddingLeft: 10,
   }
 })
