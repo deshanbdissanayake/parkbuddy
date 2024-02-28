@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useMemo, useRef } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Alert } from 'react-native';
+import MapView, { Marker } from 'react-native-maps';
 import BottomSheet from '@gorhom/bottom-sheet';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { AntDesign } from '@expo/vector-icons';
@@ -92,6 +93,17 @@ const CreateBookingScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <MapView style={styles.map} region={region}>
+        {markers.map((marker, index) => (
+          <Marker
+            key={index}
+            coordinate={marker.latlng}
+            title={marker.title}
+            description={marker.description}
+            onPress={() => handleMarkerClick(marker)}
+          />
+        ))}
+      </MapView>
       <BottomSheet ref={bottomSheetRef} index={0} snapPoints={snapPoints}>
         <View style={styles.contentContainer}>
           <Text style={styles.siteNameStyles}>{selectedSiteName}</Text>
