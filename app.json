@@ -2,10 +2,10 @@
   "expo": {
     "name": "parkbuddy",
     "slug": "snack-b810a9bc-7a4e-4e87-8721-839ff52ebc73",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "automatic",
+    "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -29,7 +29,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": "d60479d3-c6f8-4b3a-9f6b-d7460601070a"
+        "projectId": "2cc1a2c6-ec10-4beb-9c76-d9e54bdaf2d7"
       }
     }
   }
