@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useMemo, useRef } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Alert } from 'react-native';
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import BottomSheet from '@gorhom/bottom-sheet';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { AntDesign } from '@expo/vector-icons';
@@ -17,7 +18,7 @@ const CreateBookingScreen = ({ navigation }) => {
   const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
   const bottomSheetRef = useRef(null);
   const snapPoints = useMemo(() => ['1%', '40%'], []);
-  const region = {
+  const initialRegion = {
     latitude: 7.297418,
     longitude: 80.631696,
     latitudeDelta: 0.0922,
@@ -92,6 +93,21 @@ const CreateBookingScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <MapView 
+        provider={PROVIDER_GOOGLE}
+        style={styles.map} 
+        initialRegion={initialRegion}
+      >
+        {markers.map((marker, index) => (
+          <Marker
+            key={index}
+            coordinate={marker.latlng}
+            title={marker.title}
+            description={marker.description}
+            onPress={() => handleMarkerClick(marker)}
+          />
+        ))}
+      </MapView>
       <BottomSheet ref={bottomSheetRef} index={0} snapPoints={snapPoints}>
         <View style={styles.contentContainer}>
           <Text style={styles.siteNameStyles}>{selectedSiteName}</Text>
